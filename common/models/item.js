@@ -25,7 +25,7 @@ module.exports = function(Item) {
       var firstNotification = new OneSignal.Notification({
         contents: { en: "The item is available again" },
         data: instance, // we can send the item data so the user know what exactly is available again
-        include_player_ids: [ctx.instance.oneSignalUserID] // we put the user OneSignal id here
+        include_player_ids: ctx.instance.oneSignalUsersID // we put the user OneSignal id here
       });
 
       //send

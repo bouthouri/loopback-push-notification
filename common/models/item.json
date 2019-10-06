@@ -15,8 +15,8 @@
       "required": true,
       "default": 0
     },
-    "OneSignalUserID": {
-      "type": "string"
+    "OneSignalUsersID": {
+      "type": "array"
     }
   },
   "validations": [],

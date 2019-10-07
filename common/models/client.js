@@ -15,7 +15,7 @@ module.exports = function(Client) {
       // create a device object and specify what tag it has
       var deviceBody = {
         tags: {
-          bioFoodEnthusiast: modelInstance.bioFoodEnthusiast
+          bioFoodEnthusiast: modelInstance.bioFoodEnthusiast //name of the tag and the value
         }
       };
 

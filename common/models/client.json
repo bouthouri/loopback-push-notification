@@ -1,0 +1,21 @@
+{
+  "name": "Client",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "bioFoodEnthusiast": {
+      "type": "boolean",
+      "default": false
+    },
+    "oneSignalUserID": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

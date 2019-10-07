@@ -17,6 +17,11 @@
     },
     "OneSignalUsersID": {
       "type": "array"
+    },
+    "bio": {
+      "type": "boolean",
+      "required": false,
+      "default": false
     }
   },
   "validations": [],

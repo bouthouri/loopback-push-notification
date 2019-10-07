@@ -1,6 +1,42 @@
 var OneSignal = require("onesignal-node");
 
 module.exports = function(Item) {
+  Item.afterRemote("create", function(ctx, modelInstance, next) {
+    if (modelInstance.bio) {
+      // the product is bio so we should notify the users
+      // instantiate the OneSignal app client
+      var myClient = new OneSignal.Client({
+        userAuthKey: "OGE0MzUyNjAtMjM4Ny00NjNhLTk5NjctMDhmN2EwOTE3NjJm", // REST API Key
+        app: {
+          appAuthKey: "OGE0MzUyNjAtMjM4Ny00NjNhLTk5NjctMDhmN2EwOTE3NjJm", // REST API Key
+          appId: "fd568c3d-4d40-405f-9214-b5acf470fac8" // OneSignal App ID
+        }
+      });
+
+      // create the notification
+      var availabilityNotification = new OneSignal.Notification({
+        contents: { en: "There's a new bio item" }
+      });
+
+      // set the filter to the correspandant tag
+      availabilityNotification.setFilters([
+        { field: "tag", key: "bioFoodEnthusiast", value: true }
+      ]);
+
+      //send notification
+      myClient.sendNotification(availabilityNotification, function(
+        err,
+        httpResponse,
+        data
+      ) {
+        if (err) next(err); //if there's an error we return the error as response
+        next(); // else we return the response
+      });
+    } else {
+      next();
+    }
+  });
+
   Item.beforeRemote("prototype.patchAttributes", function(ctx, unused, next) {
     if (
       ctx.instance.oneSignalUserID &&

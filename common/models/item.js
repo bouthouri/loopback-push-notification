@@ -18,10 +18,8 @@ module.exports = function(Item) {
         contents: { en: "There's a new bio item" }
       });
 
-      // set the filter to the correspandant tag
-      availabilityNotification.setFilters([
-        { field: "tag", key: "bioFoodEnthusiast", value: true }
-      ]);
+      // set the segment
+      availabilityNotification.setIncludedSegments(["ATT"]);
 
       //send notification
       myClient.sendNotification(availabilityNotification, function(
